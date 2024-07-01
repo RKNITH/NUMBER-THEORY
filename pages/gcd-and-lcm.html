@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GCD and LCM</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        footer {
+            background-color: #4CAF50;
+            color: black;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: auto;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        main .container {
+            margin-top: 20px;
+        }
+
+        h1,
+        h2 {
+            color: #333;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin: 10px 0;
+            background-color: #e0f7fa;
+            padding: 10px;
+            border-radius: 4px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #4CAF50;
+            font-size: 18px;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        section {
+            margin-bottom: 20px;
+        }
+
+        label,
+        input {
+            display: block;
+            margin: 10px 0;
+        }
+
+        .btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .btn:hover {
+            background-color: #45a049;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 24px;
+            }
+
+            h2 {
+                font-size: 20px;
+            }
+
+            a {
+                font-size: 16px;
+            }
+
+            .container {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <h1>GCD and LCM</h1>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <section>
+                <h2>Greatest Common Divisor (GCD)</h2>
+                <p>The Greatest Common Divisor (GCD) of two or more integers, which are not all zero, is the largest
+                    positive integer that divides each of the integers without a remainder. For example, the GCD of 8
+                    and 12 is 4.</p>
+
+                <h3>Properties of GCD</h3>
+                <ul>
+                    <li>The GCD of two numbers is the largest number that divides both of them without leaving a
+                        remainder.</li>
+                    <li>The GCD of two prime numbers is always 1.</li>
+                    <li>The GCD can be calculated using the Euclidean algorithm.</li>
+                </ul>
+
+                <h3>Euclidean Algorithm</h3>
+                <p>The Euclidean algorithm is an efficient method for computing the GCD of two numbers, based on the
+                    principle that the GCD of two numbers does not change if the larger number is replaced by its
+                    difference with the smaller number.</p>
+            </section>
+
+            <section>
+                <h2>Least Common Multiple (LCM)</h2>
+                <p>The Least Common Multiple (LCM) of two or more integers is the smallest positive integer that is
+                    divisible by each of the integers. For example, the LCM of 4 and 5 is 20.</p>
+
+                <h3>Properties of LCM</h3>
+                <ul>
+                    <li>The LCM of two numbers is the smallest number that is a multiple of both.</li>
+                    <li>The LCM of two prime numbers is their product.</li>
+                    <li>The LCM can be found using the relationship between GCD and LCM.</li>
+                </ul>
+
+                <h3>Relationship between GCD and LCM</h3>
+                <h2>LCM and HCF of Two Numbers</h2>
+                <p>For any two positive integers, <em>a</em> and <em>b</em>, the relationship between their LCM and HCF
+                    is given by:</p>
+                <p><strong>LCM(a, b) &times; HCF(a, b) = a &times; b</strong></p>
+                <p>This means that the product of the LCM and HCF of two numbers is equal to the product of the numbers
+                    themselves.</p>
+
+                <h2>LCM and HCF of Three Numbers</h2>
+                <p>For three positive integers, <em>a</em>, <em>b</em>, and <em>c</em>, the relationship extends by
+                    considering pairwise calculations:</p>
+                <p><strong>LCM(a, b, c) &times; HCF(a, b, c) = LCM(LCM(a, b), c) &times; HCF(HCF(a, b), c)</strong></p>
+                <p>This formula builds on the pairwise relationship to account for three numbers.</p>
+
+                <h2>LCM and HCF of Four Numbers</h2>
+                <p>For four positive integers, <em>a</em>, <em>b</em>, <em>c</em>, and <em>d</em>, the relationship is
+                    extended similarly:</p>
+                <p><strong>LCM(a, b, c, d) &times; HCF(a, b, c, d) = LCM(LCM(LCM(a, b), c), d) &times; HCF(HCF(HCF(a,
+                        b), c), d)</strong></p>
+                <p>This iterative approach applies to four numbers by continuously using the results of previous pairs.
+                </p>
+
+                <h2>LCM and HCF of Five Numbers</h2>
+                <p>For five positive integers, <em>a</em>, <em>b</em>, <em>c</em>, <em>d</em>, and <em>e</em>, the
+                    relationship can be generalized as:</p>
+                <p><strong>LCM(a, b, c, d, e) &times; HCF(a, b, c, d, e) = LCM(LCM(LCM(LCM(a, b), c), d), e) &times;
+                        HCF(HCF(HCF(HCF(a, b), c), d), e)</strong></p>
+                <p>This approach is consistent with the pairwise method applied to five numbers.</p>
+
+                <h2>LCM and HCF of Six Numbers</h2>
+                <p>For six positive integers, <em>a</em>, <em>b</em>, <em>c</em>, <em>d</em>, <em>e</em>, and
+                    <em>f</em>, the relationship follows the same iterative process:
+                </p>
+                <p><strong>LCM(a, b, c, d, e, f) &times; HCF(a, b, c, d, e, f) = LCM(LCM(LCM(LCM(LCM(a, b), c), d), e),
+                        f) &times; HCF(HCF(HCF(HCF(HCF(a, b), c), d), e), f)</strong></p>
+                <p>This method generalizes the pairwise relationship to six numbers.</p>
+
+                <h2>Conclusion</h2>
+                <p>The relationship between LCM and HCF for two numbers is direct and straightforward, while for more
+                    than two numbers, it involves an iterative process of pairwise calculations. Understanding these
+                    relationships helps in solving various problems involving multiples and factors in mathematics.</p>
+            </section>
+
+            <section>
+                <h2>Find GCD and LCM of Multiple Numbers</h2>
+                <label for="numbersInput">Enter numbers (comma separated):</label>
+                <input type="text" id="numbersInput" placeholder="e.g. 12, 15, 20">
+                <button onclick="calculateGCDLCM()" class="btn">Calculate GCD and LCM</button>
+                <div id="gcdResult"></div>
+                <div id="lcmResult"></div>
+            </section>
+
+            <a href="../index.html">Back to Topics</a>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Number Theory. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function gcd(a, b) {
+            while (b !== 0) {
+                let temp = b;
+                b = a % b;
+                a = temp;
+            }
+            return a;
+        }
+
+        function lcm(a, b) {
+            return (a * b) / gcd(a, b);
+        }
+
+        function calculateGCDLCM() {
+            const input = document.getElementById('numbersInput').value;
+            const numbers = input.split(',').map(Number);
+
+            if (numbers.some(isNaN)) {
+                document.getElementById('gcdResult').innerHTML = 'Please enter valid numbers.';
+                document.getElementById('lcmResult').innerHTML = '';
+                return;
+            }
+
+            let gcdResult = numbers[0];
+            let lcmResult = numbers[0];
+
+            for (let i = 1; i < numbers.length; i++) {
+                gcdResult = gcd(gcdResult, numbers[i]);
+                lcmResult = lcm(lcmResult, numbers[i]);
+            }
+
+            document.getElementById('gcdResult').innerHTML = 'GCD: ' + gcdResult;
+            document.getElementById('lcmResult').innerHTML = 'LCM: ' + lcmResult;
+        }
+    </script>
+</body>
+
+</html>

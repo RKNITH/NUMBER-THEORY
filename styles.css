@@ -1,0 +1,106 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+
+header h1 {
+    -webkit-text-fill-color: transparent;
+    /* Hide original text */
+    background-image: linear-gradient(to right, #ff00cc, #3333ff, #00ccff);
+    /* Gradient mix as background */
+    -webkit-background-clip: text;
+    /* Clip text to background gradient */
+    background-clip: text;
+    /* Standard */
+    font-size: 36px;
+    /* Adjust font size */
+}
+
+
+
+footer {
+    background-color: #4CAF50;
+    color: black;
+    text-align: center;
+    padding: 10px 0;
+    margin-top: auto;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+main .container {
+    margin-top: 20px;
+}
+
+h1 {
+    color: #333;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin: 10px 0;
+    background-color: #e0f7fa;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+a {
+    text-decoration: none;
+    color: #333;
+    font-size: 18px;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+button {
+    background-color: #4CAF50;
+    color: #f0f0f0;
+    font-weight: bold;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+}
+
+button:hover {
+    background-color: #09a00e;
+}
+
+@media (max-width: 600px) {
+    h1 {
+        font-size: 24px;
+    }
+
+    a {
+        font-size: 16px;
+    }
+
+    .container {
+        padding: 10px;
+    }
+}

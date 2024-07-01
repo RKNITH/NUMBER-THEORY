@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfect Numbers and Mersenne Prime Numbers</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        footer {
+            background-color: #4CAF50;
+            color: black;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: auto;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        main .container {
+            margin-top: 20px;
+        }
+
+        h1,
+        h2 {
+            color: #333;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin: 10px 0;
+            background-color: #e0f7fa;
+            padding: 10px;
+            border-radius: 4px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #4CAF50;
+            font-size: 18px;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        section {
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 3px 3px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .btn:hover {
+            background-color: #45a049;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 24px;
+            }
+
+            h2 {
+                font-size: 20px;
+            }
+
+            a {
+                font-size: 16px;
+            }
+
+            .container {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <h1>Perfect Numbers and Mersenne Prime Numbers</h1>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <section>
+                <h2>Introduction to Perfect Numbers and Mersenne Prime Numbers</h2>
+                <p>Perfect numbers and Mersenne prime numbers are closely related in number theory, particularly through
+                    Euclid's theorem and the study of factors and divisors.</p>
+            </section>
+
+            <section>
+                <h2>Theorems and Properties of Perfect Numbers</h2>
+                <h3>Euclid's Theorem on Perfect Numbers</h3>
+                <p>Euclid proved that if 2<sup>p-1</sup>(2<sup>p</sup> - 1) is a prime number (where p is prime), then
+                    2<sup>p-1</sup>(2<sup>p</sup> - 1) is a perfect number. This theorem gives a way to construct even
+                    perfect numbers.</p>
+
+                <h3>Properties of Perfect Numbers</h3>
+                <ul>
+                    <li>Perfect numbers are even and of the form 2<sup>p-1</sup>(2<sup>p</sup> - 1), where
+                        2<sup>p-1</sup> and (2<sup>p</sup> - 1) are both prime.</li>
+                    <li>There are no odd perfect numbers known, and it is conjectured that none exist.</li>
+                </ul>
+
+                <h3>Relation to Mersenne Primes</h3>
+                <p>A perfect number that is also of the form 2<sup>p-1</sup>(2<sup>p</sup> - 1) is related to Mersenne
+                    primes, which are prime numbers of the form 2<sup>n</sup> - 1.</p>
+            </section>
+
+            <section>
+                <h2>Theorems and Properties of Mersenne Prime Numbers</h2>
+                <h3>Mersenne Primes</h3>
+                <p>Mersenne primes are prime numbers that are one less than a power of two, specifically of the form
+                    2<sup>n</sup> - 1, where n is a prime number.</p>
+
+                <h3>Finding Mersenne Primes</h3>
+                <p>Mersenne primes are often found through systematic testing using algorithms such as Lucas-Lehmer
+                    primality test.</p>
+
+                <h3>Relation to Perfect Numbers</h3>
+                <p>Mersenne primes are directly related to the construction of even perfect numbers through the formula
+                    2<sup>n-1</sup>(2<sup>n</sup> - 1).</p>
+            </section>
+
+            <section>
+                <h2>Finding Perfect Numbers</h2>
+                <p>To find perfect numbers, one can use the relationship with Mersenne primes and test combinations of
+                    primes for p.</p>
+
+                <label for="pValue">Enter a prime number (p):</label>
+                <input type="number" id="pValue" placeholder="e.g. 2">
+                <button onclick="findPerfectNumber()" class="btn">Find Perfect Number</button>
+                <div id="perfectNumberResult"></div>
+            </section>
+
+            <section>
+                <h2>Finding Mersenne Primes</h2>
+                <p>To find Mersenne primes, one can use algorithms like the Lucas-Lehmer test, which efficiently
+                    determines if a number of the form 2<sup>n</sup> - 1 is prime.</p>
+
+                <label for="nValue">Enter a prime number (n):</label>
+                <input type="number" id="nValue" placeholder="e.g. 2">
+                <button onclick="findMersennePrime()" class="btn">Find Mersenne Prime</button>
+                <div id="mersennePrimeResult"></div>
+            </section>
+
+            <a href="../index.html">Back to Topics</a>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Number Theory. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function findPerfectNumber() {
+            const p = parseInt(document.getElementById('pValue').value);
+
+            if (isNaN(p) || p <= 1 || !isPrime(p)) {
+                document.getElementById('perfectNumberResult').innerHTML = 'Please enter a valid prime number greater than 1.';
+                return;
+            }
+
+            const exponent = p - 1;
+            const mersennePrime = BigInt(Math.pow(2, exponent)) - BigInt(1);
+            const perfectNumber = BigInt(Math.pow(2, exponent - 1)) * mersennePrime;
+
+            document.getElementById('perfectNumberResult').innerHTML = `The perfect number corresponding to p = ${p} is ${perfectNumber.toString()} (2^${exponent - 1}) * (${mersennePrime})`;
+        }
+
+        function findMersennePrime() {
+            const n = parseInt(document.getElementById('nValue').value);
+
+            if (isNaN(n) || n <= 1 || !isPrime(n)) {
+                document.getElementById('mersennePrimeResult').innerHTML = 'Please enter a valid prime number greater than 1.';
+                return;
+            }
+
+            const mersennePrime = BigInt(Math.pow(2, n)) - BigInt(1);
+
+            if (isPrime(mersennePrime)) {
+                document.getElementById('mersennePrimeResult').innerHTML = `2^${n} - 1 is a Mersenne prime: ${mersennePrime.toString()}`;
+            } else {
+                document.getElementById('mersennePrimeResult').innerHTML = `2^${n} - 1 is not a prime number.`;
+            }
+        }
+
+        function isPrime(num) {
+            if (num <= 1) return false;
+            if (num <= 3) return true;
+            if (num % 2 === 0 || num % 3 === 0) return false;
+            let i = 5;
+            while (i * i <= num) {
+                if (num % i === 0 || num % (i + 2) === 0) return false;
+                i += 6;
+            }
+            return true;
+        }
+    </script>
+</body>
+
+</html>

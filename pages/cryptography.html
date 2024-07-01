@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cryptography</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        footer {
+            background-color: #4CAF50;
+            color: black;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: auto;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        main .container {
+            margin-top: 20px;
+        }
+
+        h1,
+        h2 {
+            color: #333;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin: 10px 0;
+            background-color: #e0f7fa;
+            padding: 10px;
+            border-radius: 4px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #4CAF50;
+            font-size: 18px;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        section {
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 4px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .btn:hover {
+            background-color: #45a049;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 24px;
+            }
+
+            h2 {
+                font-size: 20px;
+            }
+
+            a {
+                font-size: 16px;
+            }
+
+            .container {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <h1>Cryptography</h1>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <section>
+                <h2>Introduction to Cryptography</h2>
+                <p>Cryptography is the practice and study of techniques for securing communication and data in the
+                    presence of adversaries. It involves creating written or generated codes that allow information to
+                    be kept secret.</p>
+            </section>
+
+            <section>
+                <h2>Theorems and Properties in Cryptography</h2>
+                <h3>Cipher Systems</h3>
+                <p>There are several types of cipher systems used in cryptography:</p>
+                <ul>
+                    <li><strong>Symmetric-key Cryptography:</strong> Both the sender and receiver use the same key for
+                        encryption and decryption. Examples include AES and DES.</li>
+                    <li><strong>Asymmetric-key Cryptography:</strong> Uses a pair of keys, a public key for encryption
+                        and a private key for decryption. Examples include RSA and ECC.</li>
+                </ul>
+
+                <h3>Public Key Infrastructure (PKI)</h3>
+                <p>PKI is a framework that provides security through the use of digital certificates and public key
+                    cryptography. It supports encryption, authentication, and integrity of data.</p>
+
+                <h3>Hash Functions</h3>
+                <p>A hash function maps input data of arbitrary size to fixed-size values (hashes). They are used for
+                    data integrity and digital signatures. Examples include SHA-256 and MD5.</p>
+
+                <h3>Digital Signatures</h3>
+                <p>Digital signatures provide a way to verify the authenticity and integrity of a message. They are
+                    created using a private key and can be verified by anyone using the corresponding public key.</p>
+            </section>
+
+            <section>
+                <h2>Cryptographic Protocols</h2>
+                <h3>SSL/TLS</h3>
+                <p>Secure Sockets Layer (SSL) and Transport Layer Security (TLS) are protocols for establishing
+                    authenticated and encrypted links between networked computers. They are widely used to secure
+                    communications on the internet.</p>
+
+                <h3>Diffie-Hellman Key Exchange</h3>
+                <p>This protocol allows two parties to securely share a secret key over an insecure channel. It relies
+                    on the difficulty of computing discrete logarithms in a finite field.</p>
+            </section>
+
+            <section>
+                <h2>Calculating Hash of a Message</h2>
+                <p>Enter a message to calculate its hash using SHA-256:</p>
+
+                <label for="message">Message:</label>
+                <input type="text" id="message" placeholder="Enter your message">
+                <button onclick="calculateHash()" class="btn">Calculate Hash</button>
+                <div id="hashResult"></div>
+            </section>
+
+            <a href="../index.html">Back to Topics</a>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Number Theory. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        async function calculateHash() {
+            const message = document.getElementById('message').value;
+
+            if (!message) {
+                document.getElementById('hashResult').innerHTML = 'Please enter a message.';
+                return;
+            }
+
+            const encoder = new TextEncoder();
+            const data = encoder.encode(message);
+            const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+
+            document.getElementById('hashResult').innerHTML = `The SHA-256 hash of the message is: ${hashHex}`;
+        }
+    </script>
+</body>
+
+</html>

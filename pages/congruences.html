@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Congruences</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        footer {
+            background-color: #4CAF50;
+            color: black;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: auto;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        main .container {
+            margin-top: 20px;
+        }
+
+        h1,
+        h2 {
+            color: #333;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin: 10px 0;
+            background-color: #e0f7fa;
+            padding: 10px;
+            border-radius: 4px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #4CAF50;
+            font-size: 18px;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        section {
+            margin-bottom: 20px;
+        }
+
+        label,
+        input {
+            display: block;
+            margin: 10px 0;
+        }
+
+        .btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .btn:hover {
+            background-color: #45a049;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 24px;
+            }
+
+            h2 {
+                font-size: 20px;
+            }
+
+            a {
+                font-size: 16px;
+            }
+
+            .container {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <h1>Congruences in Number Theory</h1>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <section>
+                <h2>Introduction to Congruences</h2>
+                <p>Congruences are a way to express that two numbers have the same remainder when divided by a certain
+                    number, called the modulus. The notation used for congruences is:</p>
+                <p><strong>a ≡ b (mod n)</strong></p>
+                <p>This means that a and b leave the same remainder when divided by n, or equivalently, that a - b is
+                    divisible by n.</p>
+            </section>
+
+            <section>
+                <h2>Theorems and Properties of Congruences</h2>
+                <h3>Basic Properties</h3>
+                <ul>
+                    <li>If a ≡ b (mod n) and c ≡ d (mod n), then:
+                        <ul>
+                            <li>(a + c) ≡ (b + d) (mod n)</li>
+                            <li>(a - c) ≡ (b - d) (mod n)</li>
+                            <li>(a * c) ≡ (b * d) (mod n)</li>
+                        </ul>
+                    </li>
+                    <li>If a ≡ b (mod n), then for any integer k:
+                        <ul>
+                            <li>a^k ≡ b^k (mod n)</li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <h3>Cancellation Law</h3>
+                <p>If ac ≡ bc (mod n) and gcd(c, n) = 1, then a ≡ b (mod n).</p>
+
+                <h3>Chinese Remainder Theorem</h3>
+                <p>The Chinese Remainder Theorem states that if n1, n2, ..., nk are pairwise coprime positive integers,
+                    and if a1, a2, ..., ak are any integers, then the system of simultaneous congruences:</p>
+                <p>x ≡ a1 (mod n1)</p>
+                <p>x ≡ a2 (mod n2)</p>
+                <p>...</p>
+                <p>x ≡ ak (mod nk)</p>
+                <p>has a unique solution modulo N = n1*n2*...*nk.</p>
+
+                <h3>Fermat's Little Theorem</h3>
+                <p>If p is a prime number and a is any integer such that gcd(a, p) = 1, then:</p>
+                <p>a^(p-1) ≡ 1 (mod p)</p>
+                <p>An equivalent form is: a^p ≡ a (mod p).</p>
+            </section>
+
+            <section>
+                <h2>Solving Congruences</h2>
+                <p>To solve a linear congruence of the form ax ≡ b (mod n), we need to find integers x that satisfy this
+                    equation. This can be done using the extended Euclidean algorithm if gcd(a, n) divides b.</p>
+
+                <label for="coefficients">Enter coefficients a, b, and modulus n (comma separated):</label>
+                <input type="text" id="coefficients" placeholder="e.g. 4, 6, 14">
+                <button onclick="solveCongruence()" class="btn">Solve Congruence</button>
+                <div id="congruenceResult"></div>
+            </section>
+
+            <a href="../index.html">Back to Topics</a>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Number Theory. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function gcd(a, b) {
+            while (b !== 0) {
+                let temp = b;
+                b = a % b;
+                a = temp;
+            }
+            return a;
+        }
+
+        function extendedGCD(a, b) {
+            if (b == 0) {
+                return [1, 0, a];
+            }
+            let [x1, y1, gcd] = extendedGCD(b, a % b);
+            let x = y1;
+            let y = x1 - Math.floor(a / b) * y1;
+            return [x, y, gcd];
+        }
+
+        function solveCongruence() {
+            const input = document.getElementById('coefficients').value;
+            const [a, b, n] = input.split(',').map(Number);
+
+            if ([a, b, n].some(isNaN)) {
+                document.getElementById('congruenceResult').innerHTML = 'Please enter valid numbers.';
+                return;
+            }
+
+            let [x, y, gcd] = extendedGCD(a, n);
+
+            if (b % gcd !== 0) {
+                document.getElementById('congruenceResult').innerHTML = 'No solution exists.';
+                return;
+            }
+
+            x = x * (b / gcd) % n;
+            if (x < 0) x += n;
+
+            document.getElementById('congruenceResult').innerHTML = `Solution: x ≡ ${x} (mod ${n})`;
+        }
+    </script>
+</body>
+
+</html>

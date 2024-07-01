@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quadratic Residues</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        footer {
+            background-color: #4CAF50;
+            color: black;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: auto;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        main .container {
+            margin-top: 20px;
+        }
+
+        h1,
+        h2 {
+            color: #333;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin: 10px 0;
+            background-color: #e0f7fa;
+            padding: 10px;
+            border-radius: 4px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #4CAF50;
+            font-size: 18px;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        section {
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 24px;
+            }
+
+            h2 {
+                font-size: 20px;
+            }
+
+            a {
+                font-size: 16px;
+            }
+
+            .container {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <h1>Quadratic Residues</h1>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <section>
+                <h2>Introduction to Quadratic Residues</h2>
+                <p>Quadratic residues are an important concept in number theory. Given an integer n and a modulus m, a
+                    number x is called a quadratic residue modulo m if there exists an integer y such that:</p>
+                <p><strong>y<sup>2</sup> ≡ x (mod m)</strong></p>
+            </section>
+
+            <section>
+                <h2>Theorems and Properties of Quadratic Residues</h2>
+                <h3>Euler's Criterion</h3>
+                <p>Euler's Criterion provides a way to determine whether an integer is a quadratic residue modulo a
+                    prime. For an integer a and an odd prime p, a is a quadratic residue modulo p if and only if:</p>
+                <p><strong>a<sup>(p-1)/2</sup> ≡ 1 (mod p)</strong></p>
+                <p>If a is not a quadratic residue modulo p, then:</p>
+                <p><strong>a<sup>(p-1)/2</sup> ≡ -1 (mod p)</strong></p>
+
+                <h3>Legendre Symbol</h3>
+                <p>The Legendre symbol (a/p) is a notation that indicates whether a is a quadratic residue modulo the
+                    prime p. It is defined as:</p>
+                <ul>
+                    <li>(a/p) = 1 if a is a quadratic residue modulo p and a ≠ 0.</li>
+                    <li>(a/p) = -1 if a is not a quadratic residue modulo p.</li>
+                    <li>(a/p) = 0 if a ≡ 0 (mod p).</li>
+                </ul>
+
+                <h3>Properties of the Legendre Symbol</h3>
+                <ul>
+                    <li>Multiplicativity: (ab/p) = (a/p)(b/p)</li>
+                    <li>Euler's Criterion: (a/p) ≡ a<sup>(p-1)/2</sup> (mod p)</li>
+                    <li>For any integer a and an odd prime p: (a/p) = (b/p) if a ≡ b (mod p)</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Quadratic Reciprocity</h2>
+                <p>The Law of Quadratic Reciprocity is a fundamental result in number theory that describes the
+                    relationship between the solvability of two different quadratic congruences.</p>
+                <h3>The Law of Quadratic Reciprocity</h3>
+                <p>For two odd primes p and q:</p>
+                <p><strong>(p/q)(q/p) = (-1)<sup>((p-1)/2)((q-1)/2)</sup></strong></p>
+                <p>This law allows us to determine the Legendre symbol (p/q) in terms of (q/p).</p>
+
+                <h3>Supplementary Laws</h3>
+                <p>In addition to the Law of Quadratic Reciprocity, there are supplementary laws for the Legendre
+                    symbol:</p>
+                <ul>
+                    <li>For any odd prime p: (2/p) = (-1)<sup>(p<sup>2</sup> - 1)/8</sup></li>
+                    <li>For any odd prime p: (-1/p) = (-1)<sup>(p - 1)/2</sup></li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Calculation of Quadratic Residues</h2>
+                <p>To determine if a number is a quadratic residue modulo a prime, we can use the Legendre symbol or
+                    Euler's criterion. The process involves finding a square root modulo the prime, if it exists.</p>
+
+                <label for="number">Enter number (a):</label>
+                <input type="number" id="number" placeholder="e.g. 12">
+                <label for="prime">Enter prime (p):</label>
+                <input type="number" id="prime" placeholder="e.g. 13">
+                <button onclick="calculateQuadraticResidue()" class="btn">Check Quadratic Residue</button>
+                <div id="residueResult"></div>
+            </section>
+
+            <a href="../index.html">Back to Topics</a>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Number Theory. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function powerMod(base, exponent, modulus) {
+            if (modulus === 1) return 0;
+            let result = 1;
+            base = base % modulus;
+            while (exponent > 0) {
+                if (exponent % 2 === 1) result = (result * base) % modulus;
+                exponent = exponent >> 1;
+                base = (base * base) % modulus;
+            }
+            return result;
+        }
+
+        function calculateQuadraticResidue() {
+            const a = parseInt(document.getElementById('number').value);
+            const p = parseInt(document.getElementById('prime').value);
+
+            if (isNaN(a) || isNaN(p) || p <= 1) {
+                document.getElementById('residueResult').innerHTML = 'Please enter valid integers for a and p, with p being a prime greater than 1.';
+                return;
+            }
+
+            const residue = powerMod(a, (p - 1) / 2, p);
+
+            if (residue === 1) {
+                document.getElementById('residueResult').innerHTML = `${a} is a quadratic residue modulo ${p}.`;
+            } else if (residue === p - 1) {
+                document.getElementById('residueResult').innerHTML = `${a} is not a quadratic residue modulo ${p}.`;
+            } else {
+                document.getElementById('residueResult').innerHTML = `An error occurred in the calculation.`;
+            }
+        }
+    </script>
+</body>
+
+</html>

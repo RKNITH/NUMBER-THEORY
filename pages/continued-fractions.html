@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Continued Fractions</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        footer {
+            background-color: #4CAF50;
+            color: black;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: auto;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        main .container {
+            margin-top: 20px;
+        }
+
+        h1,
+        h2 {
+            color: #333;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin: 10px 0;
+            background-color: #e0f7fa;
+            padding: 10px;
+            border-radius: 4px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #4CAF50;
+            font-size: 18px;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        section {
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px;
+        }
+
+        .btn:hover {
+            background-color: #45a049;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 24px;
+            }
+
+            h2 {
+                font-size: 20px;
+            }
+
+            a {
+                font-size: 16px;
+            }
+
+            .container {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <h1>Continued Fractions</h1>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <section>
+                <h2>Introduction to Continued Fractions</h2>
+                <p>Continued fractions are expressions of the form:</p>
+                <p><strong>a<sub>0</sub> + 1/(a<sub>1</sub> + 1/(a<sub>2</sub> + 1/(a<sub>3</sub> + ... )))</strong></p>
+                <p>where a<sub>0</sub> is an integer and all other a<sub>i</sub> are positive integers. They provide a
+                    way to represent numbers through a sequence of integer quotients.</p>
+            </section>
+
+            <section>
+                <h2>Theorems and Properties of Continued Fractions</h2>
+                <h3>Convergents of Continued Fractions</h3>
+                <p>The convergents of a continued fraction are the fractions obtained by truncating the continued
+                    fraction at various points. They provide increasingly accurate rational approximations of the
+                    continued fraction.</p>
+                <ul>
+                    <li>The n-th convergent of the continued fraction is denoted by [a<sub>0</sub>; a<sub>1</sub>,
+                        a<sub>2</sub>, ..., a<sub>n</sub>].</li>
+                    <li>The convergents of a continued fraction for a number are the best rational approximations to the
+                        number.</li>
+                </ul>
+
+                <h3>Periodic Continued Fractions</h3>
+                <p>A continued fraction is periodic if the sequence of quotients repeats after some point. Such
+                    fractions represent quadratic irrationals. If the continued fraction of a number is eventually
+                    periodic, then the number is a quadratic irrational.</p>
+
+                <h3>Representation of Irrational Numbers</h3>
+                <p>Every irrational number can be uniquely represented by an infinite continued fraction. For example,
+                    the golden ratio φ is represented by the simple continued fraction [1; 1, 1, 1, ...].</p>
+            </section>
+
+            <section>
+                <h2>Examples of Continued Fractions</h2>
+                <h3>Square Roots</h3>
+                <p>The continued fraction representation of the square root of a non-square positive integer is
+                    periodic. For example:</p>
+                <p><strong>√2 = [1; 2, 2, 2, ...]</strong></p>
+
+                <h3>Euler's Continued Fraction for e</h3>
+                <p>The number e has the continued fraction representation:</p>
+                <p><strong>e = [2; 1, 2, 1, 1, 4, 1, 1, 6, ...]</strong></p>
+            </section>
+
+            <section>
+                <h2>Calculation of Continued Fractions</h2>
+                <p>You can calculate the continued fraction representation of a number by repeatedly taking the integer
+                    part and the reciprocal of the fractional part.</p>
+
+                <label for="decimal">Enter a decimal number:</label>
+                <input type="number" step="any" id="decimal" placeholder="e.g. 3.245">
+                <label for="fractions">Enter number of fractions (n):</label>
+                <input type="number" id="fractions" placeholder="e.g. 5">
+                <button onclick="calculateContinuedFraction()" class="btn">Calculate Continued Fraction</button>
+                <div id="fractionResult"></div>
+            </section>
+
+            <a href="../index.html">Back to Topics</a>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Number Theory. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function calculateContinuedFraction() {
+            const decimal = parseFloat(document.getElementById('decimal').value);
+            const n = parseInt(document.getElementById('fractions').value);
+
+            if (isNaN(decimal) || isNaN(n) || n <= 0) {
+                document.getElementById('fractionResult').innerHTML = 'Please enter a valid decimal number and a positive integer for the number of fractions.';
+                return;
+            }
+
+            let value = decimal;
+            const continuedFraction = [];
+
+            for (let i = 0; i < n; i++) {
+                const integerPart = Math.floor(value);
+                continuedFraction.push(integerPart);
+                const fractionalPart = value - integerPart;
+
+                if (fractionalPart === 0) break;
+
+                value = 1 / fractionalPart;
+            }
+
+            let fractionString = `[${continuedFraction[0]}`;
+            for (let i = 1; i < continuedFraction.length; i++) {
+                fractionString += `; ${continuedFraction[i]}`;
+            }
+            fractionString += ']';
+
+            document.getElementById('fractionResult').innerHTML = `The continued fraction representation of ${decimal} up to ${n} fractions is ${fractionString}.`;
+        }
+    </script>
+</body>
+
+</html>

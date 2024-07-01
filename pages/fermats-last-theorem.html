@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fermat's Last Theorem</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        footer {
+            background-color: #4CAF50;
+            color: black;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: auto;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        main .container {
+            margin-top: 20px;
+        }
+
+        h1,
+        h2 {
+            color: #333;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin: 10px 0;
+            background-color: #e0f7fa;
+            padding: 10px;
+            border-radius: 4px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #4CAF50;
+            font-size: 18px;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        section {
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 3px 3px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .btn:hover {
+            background-color: #45a049;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 24px;
+            }
+
+            h2 {
+                font-size: 20px;
+            }
+
+            a {
+                font-size: 16px;
+            }
+
+            .container {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <h1>Fermat's Last Theorem</h1>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <section>
+                <h2>Introduction to Fermat's Last Theorem</h2>
+                <p>Fermat's Last Theorem states that no three positive integers a, b, and c can satisfy the equation
+                    a<sup>n</sup> + b<sup>n</sup> = c<sup>n</sup> for any integer value of n greater than 2.</p>
+            </section>
+
+            <section>
+                <h2>Theorem Statement</h2>
+                <p>Fermat's Last Theorem, formulated by Pierre de Fermat in the 17th century, asserts that:</p>
+                <blockquote>
+                    There are no positive integers a, b, and c such that a<sup>n</sup> + b<sup>n</sup> = c<sup>n</sup>
+                    for any integer value of n greater than 2.
+                </blockquote>
+                <p>This theorem remained unproven for over three centuries until Andrew Wiles famously provided a proof
+                    in 1994.</p>
+            </section>
+
+            <section>
+                <h2>Historical Context</h2>
+                <p>Pierre de Fermat, a French mathematician, first wrote about his conjecture in the margin of his copy
+                    of Arithmetica by Diophantus in 1637. He claimed to have a proof but did not provide it. For
+                    centuries, mathematicians attempted to prove or disprove Fermat's conjecture, leading to significant
+                    developments in number theory.</p>
+            </section>
+
+            <section>
+                <h2>Proof of Fermat's Last Theorem</h2>
+                <p>Andrew Wiles, a British mathematician, presented a proof of Fermat's Last Theorem in 1994. His proof
+                    relied on advanced mathematical concepts including elliptic curves, modular forms, and the
+                    Taniyama–Shimura conjecture (now known as the modularity theorem).</p>
+            </section>
+
+            <section>
+                <h2>Implications and Legacy</h2>
+                <p>Wiles' proof of Fermat's Last Theorem has had a profound impact on mathematics, demonstrating the
+                    power of modern mathematical techniques and opening new avenues of research in algebraic geometry,
+                    number theory, and related fields.</p>
+            </section>
+
+            <section>
+                <h2>Related Conjectures</h2>
+                <p>Fermat's Last Theorem is part of a broader class of conjectures related to equations of the form
+                    a<sup>n</sup> + b<sup>n</sup> = c<sup>n</sup> for other values of n. While Fermat's original
+                    conjecture was specific to n > 2, similar equations for other values of n remain open questions in
+                    number theory.</p>
+            </section>
+
+            <section>
+                <h2>Calculating Fermat's Last Theorem</h2>
+                <label for="numValue">Enter values for a, b, and c:</label><br>
+                <input type="number" id="aValue" placeholder="a">
+                <input type="number" id="bValue" placeholder="b">
+                <input type="number" id="cValue" placeholder="c">
+                <br><br>
+                <label for="numValue">Enter value for n:</label><br>
+                <input type="number" id="nValue" placeholder="n">
+                <br><br>
+                <button onclick="calculateFermat()" class="btn">Calculate</button>
+                <div id="fermatResult"></div>
+            </section>
+
+            <a href="../index.html">Back to Topics</a>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Number Theory. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function calculateFermat() {
+            const a = parseInt(document.getElementById('aValue').value);
+            const b = parseInt(document.getElementById('bValue').value);
+            const c = parseInt(document.getElementById('cValue').value);
+            const n = parseInt(document.getElementById('nValue').value);
+
+            if (isNaN(a) || isNaN(b) || isNaN(c) || isNaN(n) || n <= 2) {
+                document.getElementById('fermatResult').innerHTML = 'Please enter valid integers a, b, c, and n (n > 2).';
+                return;
+            }
+
+            const lhs = Math.pow(a, n) + Math.pow(b, n);
+            const rhs = Math.pow(c, n);
+
+            if (lhs === rhs) {
+                document.getElementById('fermatResult').innerHTML = `Fermat's Last Theorem is satisfied: ${a}<sup>${n}</sup> + ${b}<sup>${n}</sup> = ${c}<sup>${n}</sup>`;
+            } else {
+                document.getElementById('fermatResult').innerHTML = `Fermat's Last Theorem is not satisfied.`;
+            }
+        }
+    </script>
+</body>
+
+</html>

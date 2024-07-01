@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Divisibility and Primes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        footer {
+            background-color: #4CAF50;
+            color: black;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: auto;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        main .container {
+            margin-top: 20px;
+        }
+
+        h1,
+        h2 {
+            color: #333;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin: 10px 0;
+            background-color: #e0f7fa;
+            padding: 10px;
+            border-radius: 4px;
+        }
+
+        .btn {
+            background-color: #4CAF50;
+            color: #f0f0f0;
+            font-weight: bold;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+        }
+
+        .btn:hover {
+            background-color: #09a00e;
+        }
+
+        a {
+            text-decoration: none;
+            color: #4CAF50;
+            font-size: 18px;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        section {
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 24px;
+            }
+
+            h2 {
+                font-size: 20px;
+            }
+
+            a {
+                font-size: 16px;
+            }
+
+            .container {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <h1>Divisibility and Primes</h1>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <section>
+                <h2>Divisibility Rules</h2>
+                <h3>Divisibility by 2</h3>
+                <p>A number is divisible by 2 if its last digit is even (0, 2, 4, 6, 8).</p>
+
+                <h3>Divisibility by 3</h3>
+                <p>A number is divisible by 3 if the sum of its digits is divisible by 3.</p>
+
+                <h3>Divisibility by 4</h3>
+                <p>A number is divisible by 4 if the number formed by its last two digits is divisible by 4.</p>
+
+                <h3>Divisibility by 5</h3>
+                <p>A number is divisible by 5 if it ends in 0 or 5.</p>
+
+                <h3>Divisibility by 6</h3>
+                <p>A number is divisible by 6 if it is divisible by both 2 and 3.</p>
+
+                <h3>Divisibility by 7</h3>
+                <p>To check if a number is divisible by 7, double the last digit and subtract it from the rest of the
+                    number. If the result is divisible by 7, then so is the original number.</p>
+
+                <h3>Divisibility by 8</h3>
+                <p>A number is divisible by 8 if the number formed by its last three digits is divisible by 8.</p>
+
+                <h3>Divisibility by 9</h3>
+                <p>A number is divisible by 9 if the sum of its digits is divisible by 9.</p>
+
+                <h3>Divisibility by 11</h3>
+                <p>A number is divisible by 11 if the difference between the sum of its digits in odd positions and the
+                    sum of its digits in even positions is divisible by 11.</p>
+            </section>
+
+            <section>
+                <h1>Prime Number Theory</h1>
+
+                <h2>Introduction</h2>
+                <p>Prime numbers are natural numbers greater than 1 that have no positive divisors other than 1 and
+                    themselves. They play a fundamental role in number theory due to their distribution and properties.
+                </p>
+
+                <h2>Basic Definitions</h2>
+                <p>A prime number is defined as a natural number greater than 1 that cannot be formed by multiplying two
+                    smaller natural numbers. For example, 5 is prime because the only ways to write it as a product, 1 ×
+                    5 or 5 × 1, involve 5 itself.</p>
+
+                <h2>Fundamental Theorem of Arithmetic</h2>
+                <p>This theorem states that every integer greater than 1 is either a prime itself or can be factorized
+                    into prime numbers, and this factorization is unique, apart from the order of the factors.</p>
+
+                <h2>Sieve of Eratosthenes</h2>
+                <p>The Sieve of Eratosthenes is an ancient algorithm used to find all primes up to a specified integer.
+                    It works by iteratively marking the multiples of each prime starting from 2.</p>
+                <ul>
+                    <li>Initialize a list of numbers from 2 to n.</li>
+                    <li>Start with the first number in the list (p=2).</li>
+                    <li>Mark all multiples of p (2p, 3p, 4p, etc.) as non-prime.</li>
+                    <li>Find the next number in the list that is not marked and repeat the process.</li>
+                </ul>
+
+                <h2>Prime Number Theorem</h2>
+                <p>The Prime Number Theorem describes the asymptotic distribution of prime numbers. It states that the
+                    number of primes less than a given number n is approximately equal to n / ln(n), where ln is the
+                    natural logarithm.</p>
+
+                <h2>Euclid's Theorem</h2>
+                <p>Euclid's theorem asserts that there are infinitely many prime numbers. The proof involves assuming a
+                    finite number of primes and deriving a contradiction by constructing a new prime not in the assumed
+                    list.</p>
+
+                <h2>Goldbach's Conjecture</h2>
+                <p>This conjecture, proposed by Christian Goldbach, posits that every even integer greater than 2 can be
+                    expressed as the sum of two prime numbers. Although it has been checked for large numbers, it
+                    remains unproven.</p>
+
+                <h2>Fermat's Little Theorem</h2>
+                <p>If p is a prime number and a is an integer not divisible by p, then a^(p-1) ≡ 1 (mod p). This theorem
+                    is useful for checking the primality of numbers and has applications in cryptography.</p>
+
+                <h2>Applications of Prime Numbers</h2>
+                <ul>
+                    <li><strong>Cryptography:</strong> Prime numbers are crucial in various encryption algorithms, such
+                        as RSA, where the security of the system relies on the difficulty of factoring large composite
+                        numbers.</li>
+                    <li><strong>Computer Science:</strong> Primes are used in hashing algorithms, random number
+                        generation, and error detection and correction.</li>
+                    <li><strong>Mathematics:</strong> Primes are fundamental in various branches of mathematics,
+                        influencing fields like algebra, number theory, and analysis.</li>
+                </ul>
+
+                <h2>Open Problems</h2>
+                <ul>
+                    <li><strong>Riemann Hypothesis:</strong> This hypothesis, one of the Millennium Prize Problems,
+                        conjectures that all non-trivial zeros of the Riemann zeta function have a real part of 1/2. It
+                        has profound implications for the distribution of prime numbers.</li>
+                    <li><strong>Twin Prime Conjecture:</strong> This conjecture suggests that there are infinitely many
+                        twin primes, pairs of primes that differ by 2, such as (11, 13) and (17, 19).</li>
+                </ul>
+
+                <h2>Conclusion</h2>
+                <p>Prime numbers are a cornerstone of number theory with wide-reaching applications in mathematics and
+                    beyond. Their unique properties and intriguing distribution continue to inspire research and
+                    discovery.</p>
+            </section>
+
+            <section>
+                <h2>Find Prime Numbers and Prime Factorization</h2>
+                <h3>Find Prime Numbers up to a Given Number</h3>
+                <label for="primeInput">Enter a number:</label>
+                <input type="number" id="primeInput" required>
+                <button onclick="findPrimes()" class="btn">Find Primes</button>
+                <div id="primeResult"></div>
+
+                <h3>Prime Factorization</h3>
+                <label for="factorInput">Enter a number:</label>
+                <input type="number" id="factorInput" required>
+                <button onclick="primeFactorization()" class="btn">Find Prime Factors</button>
+                <div id="factorResult"></div>
+
+
+                <h3>Find Twin Primes up to a Given Number</h3>
+                <label for="twinPrimeInput">Enter a number:</label>
+                <input type="number" id="twinPrimeInput" required>
+                <button onclick="findTwinPrimes()" class="btn">Find Twin Primes</button>
+                <div id="twinPrimeResult"></div>
+            </section>
+
+            <a href="../index.html">Back to Topics</a>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Number Theory. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function findPrimes() {
+            const n = document.getElementById('primeInput').value;
+            let primes = [];
+            for (let i = 2; i <= n; i++) {
+                let isPrime = true;
+                for (let j = 2; j <= Math.sqrt(i); j++) {
+                    if (i % j === 0) {
+                        isPrime = false;
+                        break;
+                    }
+                }
+                if (isPrime) {
+                    primes.push(i);
+                }
+            }
+            document.getElementById('primeResult').innerHTML = 'Prime numbers up to ' + n + ': ' + primes.join(', ');
+        }
+
+        function primeFactorization() {
+            const n = document.getElementById('factorInput').value;
+            let factors = [];
+            let number = n;
+            for (let i = 2; i <= Math.sqrt(number); i++) {
+                while (number % i === 0) {
+                    factors.push(i);
+                    number /= i;
+                }
+            }
+            if (number > 1) {
+                factors.push(number);
+            }
+            document.getElementById('factorResult').innerHTML = 'Prime factors of ' + n + ': ' + factors.join(', ');
+        }
+
+        function findPrimesUpTo(n) {
+            let primes = [];
+            for (let i = 2; i <= n; i++) {
+                let isPrime = true;
+                for (let j = 2; j <= Math.sqrt(i); j++) {
+                    if (i % j === 0) {
+                        isPrime = false;
+                        break;
+                    }
+                }
+                if (isPrime) {
+                    primes.push(i);
+                }
+            }
+            return primes;
+        }
+
+        function findTwinPrimes() {
+            const n = document.getElementById('twinPrimeInput').value;
+            const primes = findPrimesUpTo(n);
+            let twinPrimes = [];
+            for (let i = 0; i < primes.length - 1; i++) {
+                if (primes[i + 1] - primes[i] === 2) {
+                    twinPrimes.push([primes[i], primes[i + 1]]);
+                }
+            }
+            const twinPrimesStr = twinPrimes.map(pair => `(${pair[0]}, ${pair[1]})`).join(', ');
+            document.getElementById('twinPrimeResult').innerHTML = 'Twin primes up to ' + n + ': ' + twinPrimesStr;
+        }
+
+    </script>
+</body>
+
+</html>

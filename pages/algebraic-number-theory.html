@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algebraic Number Theory</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        footer {
+            background-color: #4CAF50;
+            color: black;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: auto;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        main .container {
+            margin-top: 20px;
+        }
+
+        h1,
+        h2,
+        h3 {
+            color: #333;
+        }
+
+        p {
+            line-height: 1.6;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin: 10px 0;
+            background-color: #e0f7fa;
+            padding: 10px;
+            border-radius: 4px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #4CAF50;
+            font-size: 18px;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        section {
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 24px;
+            }
+
+            h2 {
+                font-size: 20px;
+            }
+
+            h3 {
+                font-size: 18px;
+            }
+
+            a {
+                font-size: 16px;
+            }
+
+            .container {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <h1>Algebraic Number Theory</h1>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <section>
+                <h2>Introduction to Algebraic Number Theory</h2>
+                <p>Algebraic number theory is a branch of number theory that studies the arithmetic properties of
+                    algebraic numbers, which are roots of polynomial equations with integer coefficients. It explores
+                    the structure of number fields, their rings of integers, and extends concepts like prime
+                    factorization to ideals in these fields.</p>
+            </section>
+
+            <section>
+                <h2>Theorems and Results</h2>
+
+                <h3>Number Fields and Rings of Integers</h3>
+                <p>Number fields are finite extensions of the rational numbers, often denoted as (K). Each number
+                    field ( K ) has a corresponding ring of integers (mathcal{O}_K ), which generalizes the
+                    concept of integers to these fields.</p>
+
+                <h3>Ideal Theory</h3>
+                <p>Ideal theory in algebraic number theory extends the concept of prime factorization from integers to
+                    ideals within the ring of integers ( mathcal{O}_K ). The fundamental theorem of ideal theory
+                    states that every nonzero ideal in ( mathcal{O}_K ) can be factored uniquely into a product of
+                    prime ideals.</p>
+
+                <h3>Class Field Theory</h3>
+                <p>Class field theory connects number fields to abelian extensions, which are Galois extensions with
+                    abelian Galois groups. It establishes a deep relationship between number fields and ideal class
+                    groups through the use of ideles and the Artin reciprocity map.</p>
+            </section>
+
+            <section>
+                <h2>Axioms and Methods</h2>
+                <p>Algebraic number theory employs various axioms and methods to explore the properties of number fields
+                    and their rings of integers:</p>
+
+                <ul>
+                    <li><strong>Norms and Traces:</strong> These functions on elements of number fields play a crucial
+                        role in defining the arithmetic behavior of these fields and their extensions.</li>
+                    <li><strong>Discriminants and Ramification:</strong> The discriminant measures the extent of
+                        "ramification" or complication of the field extension at prime ideals.</li>
+                    <li><strong>Minkowski Bound:</strong> Provides an upper limit on the absolute value of the
+                        discriminant of a number field in terms of its degree and regulator.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Applications</h2>
+                <p>Algebraic number theory finds applications in various areas of mathematics and beyond:</p>
+
+                <ul>
+                    <li><strong>Diophantine Equations:</strong> Uses algebraic methods to study equations with integer
+                        solutions, such as the study of elliptic curves over number fields.</li>
+                    <li><strong>Class Number and Units:</strong> Computes the class number of a number field, which
+                        measures the failure of unique factorization, and studies units in number fields.</li>
+                    <li><strong>Cryptography:</strong> Certain cryptographic protocols rely on the properties of number
+                        fields and their rings of integers for security, such as those based on ideal lattices.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Future Directions</h2>
+                <p>The future of algebraic number theory involves exploring more complex relationships and developing
+                    computational tools:</p>
+
+                <ul>
+                    <li><strong>Non-abelian Class Field Theory:</strong> Extending class field theory to non-abelian
+                        Galois extensions to understand more intricate relationships between number fields and their
+                        arithmetic properties.</li>
+                    <li><strong>Computational Aspects:</strong> Developing efficient algorithms for computing with
+                        number fields, including algorithms for computing class groups and units.</li>
+                </ul>
+            </section>
+
+            <a href="../index.html">Back to Topics</a>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Number Theory. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Theoretic Functions</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        footer {
+            background-color: #4CAF50;
+            color: black;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: auto;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        main .container {
+            margin-top: 20px;
+        }
+
+        h1,
+        h2 {
+            color: #333;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin: 10px 0;
+            background-color: #e0f7fa;
+            padding: 10px;
+            border-radius: 4px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #4CAF50;
+            font-size: 18px;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        #sumResult {
+            margin-top: 10px;
+            background-color: aquamarine;
+            padding: 3px 3px;
+        }
+
+        section {
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 24px;
+            }
+
+            h2 {
+                font-size: 20px;
+            }
+
+            a {
+                font-size: 16px;
+            }
+
+            .container {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <h1>Number Theoretic Functions</h1>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <section>
+                <h2>Introduction to Number Theoretic Functions</h2>
+                <p>Number theoretic functions are functions defined on the set of natural numbers and have properties
+                    that are significant in number theory. These functions include divisor functions, Euler's totient
+                    function, and many others.</p>
+            </section>
+
+            <section>
+                <h2>Divisor Functions</h2>
+                <p>Divisor functions are functions that count the number of divisors or sum the divisors of a given
+                    integer.</p>
+
+                <h3>σ<sub>k</sub>(n) - Sum of Divisors Function</h3>
+                <p>The sum of divisors function, denoted as σ<sub>k</sub>(n), is defined as the sum of the k-th powers
+                    of the positive divisors of n. For k = 0, σ<sub>0</sub>(n) represents the number of divisors of n,
+                    also denoted as d(n).</p>
+
+                <h3>Properties</h3>
+                <ul>
+                    <li>σ<sub>k</sub>(1) = 1 for all k.</li>
+                    <li>σ<sub>k</sub>(n) is a multiplicative function.</li>
+                    <li>If p is a prime and e is a positive integer, then σ<sub>k</sub>(p<sup>e</sup>) = 1 +
+                        p<sup>k</sup> + p<sup>2k</sup> + ... + p<sup>ek</sup>.</li>
+                </ul>
+            </section>
+            <section>
+                <h2>Sum of k-th Powers of All Divisors of a Number</h2>
+                <p>The sum of the k-th powers of all divisors of a number n, denoted as σ<sub>k</sub>(n), is a useful
+                    function in number theory.</p>
+
+                <h3>Definition</h3>
+                <p>For a positive integer n, σ<sub>k</sub>(n) is defined as:</p>
+                <p><strong>σ<sub>k</sub>(n) = Σ d<sup>k</sup></strong></p>
+                <p>where the sum is over all positive divisors d of n.</p>
+
+                <h3>Properties</h3>
+                <ul>
+                    <li>σ<sub>0</sub>(n) = d(n), which is the number of divisors of n.</li>
+                    <li>σ<sub>1</sub>(n) = σ(n), which is the sum of all divisors of n.</li>
+                    <li>For any prime p and positive integer e, σ<sub>k</sub>(p<sup>e</sup>) = 1 + p<sup>k</sup> +
+                        p<sup>2k</sup> + ... + p<sup>ek</sup>.</li>
+                    <li>σ<sub>k</sub>(n) is a multiplicative function, meaning if m and n are coprime, then
+                        σ<sub>k</sub>(mn) = σ<sub>k</sub>(m)σ<sub>k</sub>(n).</li>
+                </ul>
+                <h3>Calculate Sum of k-th Powers of Divisors</h3>
+                <label for="number">Enter number (n):</label>
+                <input type="number" id="number" placeholder="e.g. 12">
+                <label for="power">Enter power (k):</label>
+                <input type="number" id="power" placeholder="e.g. 2">
+                <button onclick="calculateSumOfPowers()" class="btn">Calculate</button>
+                <div id="sumResult"></div>
+            </section>
+
+
+            <section>
+                <h2>Euler's Totient Function</h2>
+                <p>Euler's totient function, denoted as φ(n), counts the number of integers up to n that are relatively
+                    prime to n.</p>
+
+                <h3>Definition</h3>
+                <p>For a positive integer n, φ(n) is defined as the number of integers k in the range 1 ≤ k ≤ n for
+                    which gcd(n, k) = 1.</p>
+
+                <h3>Properties</h3>
+                <ul>
+                    <li>φ(p) = p - 1 if p is a prime.</li>
+                    <li>φ(mn) = φ(m)φ(n) if gcd(m, n) = 1.</li>
+                    <li>φ(p<sup>k</sup>) = p<sup>k</sup> - p<sup>k-1</sup> for a prime p and a positive integer k.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Mobius Function</h2>
+                <p>The Möbius function, denoted as μ(n), is an important function in number theory and combinatorics.
+                </p>
+
+                <h3>Definition</h3>
+                <ul>
+                    <li>μ(n) = 1 if n is a square-free positive integer with an even number of prime factors.</li>
+                    <li>μ(n) = -1 if n is a square-free positive integer with an odd number of prime factors.</li>
+                    <li>μ(n) = 0 if n has a squared prime factor.</li>
+                </ul>
+
+                <h3>Properties</h3>
+                <ul>
+                    <li>μ(1) = 1.</li>
+                    <li>The Möbius function is a multiplicative function.</li>
+                    <li>The sum of the Möbius function over the divisors of n equals 0 for n > 1.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Liouville Function</h2>
+                <p>The Liouville function, denoted as λ(n), is defined for all positive integers n and gives (-1) raised
+                    to the power of the number of prime factors of n, counted with multiplicity.</p>
+
+                <h3>Definition</h3>
+                <p>For a positive integer n with prime factorization n =
+                    p<sub>1</sub><sup>e1</sup>p<sub>2</sub><sup>e2</sup>...p<sub>k</sub><sup>ek</sup>, the Liouville
+                    function is defined as:</p>
+                <p>λ(n) = (-1)<sup>e1 + e2 + ... + ek</sup>.</p>
+
+                <h3>Properties</h3>
+                <ul>
+                    <li>λ(1) = 1.</li>
+                    <li>λ(p) = -1 for any prime p.</li>
+                    <li>λ is a completely multiplicative function.</li>
+                </ul>
+            </section>
+
+            <a href="../index.html">Back to Topics</a>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Number Theory. All rights reserved.</p>
+        </div>
+    </footer>
+    <script>
+        function calculateSumOfPowers() {
+            const n = parseInt(document.getElementById('number').value);
+            const k = parseInt(document.getElementById('power').value);
+
+            if (isNaN(n) || isNaN(k) || n <= 0 || k < 0) {
+                document.getElementById('sumResult').innerHTML = 'Please enter valid positive numbers for n and non-negative numbers for k.';
+                return;
+            }
+
+            let sum = 0;
+            for (let i = 1; i <= n; i++) {
+                if (n % i === 0) {
+                    sum += Math.pow(i, k);
+                }
+            }
+
+            document.getElementById('sumResult').innerHTML = `The sum of the ${k}-th powers of all divisors of ${n} is ${sum}.`;
+        }
+    </script>
+</body>
+
+</html>

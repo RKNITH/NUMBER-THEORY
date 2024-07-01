@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diophantine Equations</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        footer {
+            background-color: #4CAF50;
+            color: black;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: auto;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        main .container {
+            margin-top: 20px;
+        }
+
+        h1,
+        h2 {
+            color: #333;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin: 10px 0;
+            background-color: #e0f7fa;
+            padding: 10px;
+            border-radius: 4px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #4CAF50;
+            font-size: 18px;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        section {
+            margin-bottom: 20px;
+        }
+
+        label,
+        input {
+            display: block;
+            margin: 10px 0;
+        }
+
+        .btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .btn:hover {
+            background-color: #45a049;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 24px;
+            }
+
+            h2 {
+                font-size: 20px;
+            }
+
+            a {
+                font-size: 16px;
+            }
+
+            .container {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <h1>Diophantine Equations</h1>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <section>
+                <h2>Introduction to Diophantine Equations</h2>
+                <p>Diophantine equations are polynomial equations where the variables are required to be integers. They
+                    are named after the ancient Greek mathematician Diophantus. A common example is the linear
+                    Diophantine equation in two variables:</p>
+                <p><strong>ax + by = c</strong></p>
+                <p>where a, b, c are given integers, and x, y are unknown integers to be determined.</p>
+            </section>
+
+            <section>
+                <h2>Theorems and Properties of Diophantine Equations</h2>
+                <h3>Solvability of Linear Diophantine Equations</h3>
+                <p>A linear Diophantine equation ax + by = c has integer solutions if and only if the greatest common
+                    divisor of a and b divides c. In other words, there exist integers x and y such that:</p>
+                <p><strong>ax + by = c</strong></p>
+                <p>if and only if gcd(a, b) | c.</p>
+
+                <h3>Finding Solutions</h3>
+                <p>If a linear Diophantine equation ax + by = c has a solution, then it has infinitely many solutions.
+                    If (x0, y0) is a particular solution, then all solutions are given by:</p>
+                <p><strong>x = x0 + (b/gcd(a,b))t</strong></p>
+                <p><strong>y = y0 - (a/gcd(a,b))t</strong></p>
+                <p>where t is any integer.</p>
+
+            </section>
+            <section>
+                <h2>Solving Pell's Equation</h2>
+                <p>Pell's equation is of the form ( x^2 - Dy^2 = 1 ), where ( D ) is a non-square positive integer.
+                </p>
+                <label for="pellInput">Enter a value for D:</label>
+                <input type="number" id="pellInput" required>
+                <button onclick="solvePellEquation()" class="btn">Solve Pell's Equation</button>
+                <div id="pellResult"></div>
+            </section>
+
+            <section>
+                <h2>Solving Linear Diophantine Equations</h2>
+                <p>To solve a linear Diophantine equation ax + by = c, we use the extended Euclidean algorithm to find a
+                    particular solution and then derive the general solution.</p>
+
+                <label for="coefficients">Enter coefficients a, b, and constant c (comma separated):</label>
+                <input type="text" id="coefficients" placeholder="e.g. 3, 6, 9">
+                <button onclick="solveDiophantine()" class="btn">Solve Equation</button>
+                <div id="solutionResult"></div>
+            </section>
+
+            <a href="../index.html">Back to Topics</a>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Number Theory. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function gcd(a, b) {
+            while (b !== 0) {
+                let temp = b;
+                b = a % b;
+                a = temp;
+            }
+            return a;
+        }
+
+        function extendedGCD(a, b) {
+            if (b == 0) {
+                return [1, 0, a];
+            }
+            let [x1, y1, gcd] = extendedGCD(b, a % b);
+            let x = y1;
+            let y = x1 - Math.floor(a / b) * y1;
+            return [x, y, gcd];
+        }
+
+        function solveDiophantine() {
+            const input = document.getElementById('coefficients').value;
+            const [a, b, c] = input.split(',').map(Number);
+
+            if ([a, b, c].some(isNaN)) {
+                document.getElementById('solutionResult').innerHTML = 'Please enter valid numbers.';
+                return;
+            }
+
+            let [x, y, gcd] = extendedGCD(a, b);
+
+            if (c % gcd !== 0) {
+                document.getElementById('solutionResult').innerHTML = 'No solution exists.';
+                return;
+            }
+
+            x = x * (c / gcd);
+            y = y * (c / gcd);
+            let generalSolution = `General Solution: x = ${x} + ${b / gcd}t, y = ${y} - ${a / gcd}t (for any integer t)`;
+
+            document.getElementById('solutionResult').innerHTML = `Particular Solution: x = ${x}, y = ${y}<br>${generalSolution}`;
+        }
+
+        function solvePellsEquation(D) {
+            if (Math.sqrt(D) % 1 === 0) {
+                return "D must be a non-square positive integer.";
+            }
+
+            let m = 0;
+            let d = 1;
+            let a = Math.floor(Math.sqrt(D));
+            let num1 = a;
+            let den1 = 1;
+            let numk = a;
+            let denk = 0;
+
+            let xk_1 = 1;
+            let yk_1 = 0;
+            let xk = a;
+            let yk = 1;
+
+            while (xk * xk - D * yk * yk != 1) {
+                m = d * a - m;
+                d = (D - m * m) / d;
+                a = Math.floor((Math.sqrt(D) + m) / d);
+                let num2 = num1;
+                let den2 = den1;
+                num1 = a * num1 + num2;
+                den1 = a * den1 + den2;
+                numk = a * numk + xk_1;
+                denk = a * denk + yk_1;
+                xk_1 = xk;
+                yk_1 = yk;
+                xk = numk;
+                yk = denk;
+            }
+
+            return [xk, yk];
+        }
+
+        function solvePellEquation() {
+            const D = document.getElementById('pellInput').value;
+
+            if (isNaN(D) || D <= 0) {
+                document.getElementById('pellResult').innerHTML = 'Please enter a valid positive number for D.';
+                return;
+            }
+
+            let solution = solvePellsEquation(parseInt(D));
+            document.getElementById('pellResult').innerHTML = `Fundamental solution for Pell's equation x^2 - ${D}y^2 = 1: x = ${solution[0]}, y = ${solution[1]}`;
+        }
+    </script>
+</body>
+
+</html>
